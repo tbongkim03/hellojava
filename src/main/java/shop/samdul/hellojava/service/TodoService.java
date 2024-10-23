@@ -36,6 +36,11 @@ public class TodoService {
         todoMapper.updateByPut(id, subject, body, completed);
     }
 
+    public void updateByPatch(Integer id, String subject, String body, Boolean completed) {
+        System.out.println("[service] create");
+        todoMapper.updateByPut(id, subject, body, completed);
+    }
+
     public void delete(Integer id) {
         System.out.println("[service] delete");
         todoMapper.delete(id);

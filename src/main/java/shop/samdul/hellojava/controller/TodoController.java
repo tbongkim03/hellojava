@@ -3,6 +3,8 @@ package shop.samdul.hellojava.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -36,30 +38,55 @@ public class TodoController {
     }
 
     @PostMapping("/users")
-    public void create(@RequestBody String subject, String body, Boolean completed) {
+    public ResponseEntity<Void> create(@RequestBody TodoEntity todoEntity) {
         System.out.println("[Controller]");
-        todoService.create(subject, body, completed);
-        System.out.println("[create end]");
+        try {
+            todoService.create(todoEntity.getSubject(), todoEntity.getBody(), todoEntity.getCompleted());
+            System.out.println("[put end]");
+            return ResponseEntity.status(HttpStatus.OK).build(); // 성공 상태 코드 200
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build(); // 오류 상태 코드 500
+        }
     }
 
     // 모든 것 수정
-    @PutMapping("/users")
-    public void updatePut(@RequestBody Integer id, String subject, String body, Boolean completed) {
+    @PutMapping("/users/{id}")
+    public ResponseEntity<Void> updatePut(@PathVariable Integer id, @RequestBody TodoEntity todoEntity) {
         System.out.println("[Controller]");
-        todoService.updateByPut(id, subject, body, completed);
-        System.out.println("[put end]");
+        try {
+            todoService.updateByPut(id, todoEntity.getSubject(), todoEntity.getBody(), todoEntity.getCompleted());
+            System.out.println("[put end]");
+            return ResponseEntity.status(HttpStatus.OK).build(); // 성공 상태 코드 200
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build(); // 오류 상태 코드 500
+        }
     }
     // 일부 수정 
-    @PatchMapping("/users")
-    public void updatePatch(@RequestBody Integer id, String subject, String body, Boolean completed) {
+    @PatchMapping("/users/{id}")
+    public ResponseEntity<Void> updatePatch(@PathVariable Integer id, @RequestBody TodoEntity todoEntity) {
         System.out.println("[Controller]");
-        todoService.updateByPut(id, subject, body, completed);
-        System.out.println("patch end");
+        try {
+            todoService.updateByPut(id, todoEntity.getSubject(), todoEntity.getBody(), todoEntity.getCompleted());
+            System.out.println("[put end]");
+            return ResponseEntity.status(HttpStatus.OK).build(); // 성공 상태 코드 200
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build(); // 오류 상태 코드 500
+        }
     }
 
     @DeleteMapping("/users/{id}")
-    public void delete(@RequestBody Integer id) {
+    public ResponseEntity<Void> delete(@PathVariable Integer id) {
         System.out.println("[Controller]");
-        todoService.delete(id);
+        try {
+            todoService.delete(id);
+            System.out.println("[put end]");
+            return ResponseEntity.status(HttpStatus.OK).build(); // 성공 상태 코드 200
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build(); // 오류 상태 코드 500
+        }
     }
 }
