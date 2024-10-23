@@ -16,24 +16,24 @@
         WHERE id = #{id}
     </select>
 
-    <insert id="add" resultType="shop.samdul.hellojava.entity.TodoEntity">
+    <insert id="add" parameterType="shop.samdul.hellojava.entity.TodoEntity">
         INSERT INTO ENCORE_TODO_TBL(subject, body, completed)
         VALUES(#{subject}, #{body}, #{completed})
     </insert>
 
-    <update id="updateByPut" resultType="shop.samdul.hellojava.entity.TodoEntity">
+    <update id="updateByPut" parameterType="shop.samdul.hellojava.entity.TodoEntity">
         UPDATE ENCORE_TODO_TBL
         SET SUBJECT = #{subject}, BODY = #{body}, completed = #{completed}
         WHERE id = #{id}
     </update>
 
-    <update id="updateByPatch" resultType="shop.samdul.hellojava.entity.TodoEntity">
+    <update id="updateByPatch" parameterType="shop.samdul.hellojava.entity.TodoEntity">
         UPDATE ENCORE_TODO_TBL
         SET SUBJECT = #{subject}, BODY = #{body}, completed = #{completed}
         WHERE id = #{id}
     </update>
     
-    <delete id="delete" resultType="shop.samdul.hellojava.entity.TodoEntity">
+    <delete id="delete" resultType="int">
         DELETE FROM ENCORE_TODO_TBL
         WHERE id = #{id}
     </delete>
