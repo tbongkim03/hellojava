@@ -8,4 +8,8 @@ import shop.samdul.hellojava.entity.TodoEntity;
 public interface TodoMapper {
     List<TodoEntity> findAll();
     TodoEntity findById(int id);
+    void add(String subject, String body, Boolean completed);
+    void updateByPut(int id, String subject, String body, Boolean completed);
+    void updateByPatch(int id, String subject, String body, Boolean completed);
+    void delete(int id);
 }

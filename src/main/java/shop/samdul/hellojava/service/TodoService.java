@@ -25,4 +25,19 @@ public class TodoService {
         return todo;
         
     }
+
+    public void create(String subject, String body, Boolean completed) {
+        System.out.println("[service] create");
+        todoMapper.add(subject, body, completed);
+    }
+
+    public void updateByPut(Integer id, String subject, String body, Boolean completed) {
+        System.out.println("[service] create");
+        todoMapper.updateByPut(id, subject, body, completed);
+    }
+
+    public void delete(Integer id) {
+        System.out.println("[service] delete");
+        todoMapper.delete(id);
+    }
 }
