@@ -7,4 +7,5 @@ import shop.samdul.hellojava.entity.TodoEntity;
 @Mapper
 public interface TodoMapper {
     List<TodoEntity> findAll();
+    TodoEntity findById(int id);
 }
